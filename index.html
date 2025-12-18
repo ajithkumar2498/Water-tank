@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tank Solution</title>
+    <link rel ="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <h2>Water Tank Problem</h2>
+    
+    <div id="input-container">
+        <label for="heights">Input (comma separated):</label><br><br>
+        <input type="text" id="heights" value="0,4,0,0,0,6,0,6,4,0">
+        <button onclick="calculateAndDraw()">Calculate</button>
+    </div>
+
+    <div id="result">Total Water: 0 Units</div>
+    
+    <div id="svg-container"></div>
+
+     <script src="watertank.js"></script>
+</body>
+</html>
