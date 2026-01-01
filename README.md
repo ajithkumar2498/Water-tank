@@ -1,52 +1,82 @@
-# Water Tank Problem - Frontend Solution
+Max Profit Algorithm 🏗️💰
 
-This repository contains a solution for the "Water Tank Problem" (a variation of the *Trapping Rain Water* algorithm). It calculates the total units of water that can be stored between blocks of varying heights and visualizes the result using **SVG generation**.
+A specialized Node.js script to calculate the optimal mix of properties (Theatres, Pubs, Commercial Parks) to build within a given time limit to maximize total earnings.
 
-## Assignment Overview
+📋 Problem Overview
 
-The goal of this assignment is to compute the units of water stored in-between blocks given an array of integers representing block heights.
+The goal is to select a combination of buildings that fits within n time units and generates the highest total profit. The algorithm is designed to handle edge cases where multiple valid solutions exist for the same maximum profit.
 
-* **Input:** An array of integers (e.g., `[0,4,0,0,0,6,0,6,4,0]`)
-* **Output:** Total units of water (e.g., `18 Units`)
-* **Constraint:** `n` (block height) is always greater than -1.
+Properties & Constraints
 
-## Features
+Property
 
-* **Vanilla JavaScript:** Built without any frameworks (React, Angular, Vue) as per requirements.
-* **Dynamic SVG Visualization:** Renders the solution using Scalable Vector Graphics (SVG) rather than an HTML table, allowing for a cleaner and more accurate visual representation.
-* **Interactive Input:** Users can input custom arrays to test different scenarios.
-* **Responsive Logic:** Validates input and updates calculations instantly.
+Build Time
 
-## Technologies Used
+Earning Rate ($/unit)
 
-* **HTML5:** Structure and layout.
-* **CSS3:** Styling for the UI and SVG elements.
-* **JavaScript (ES6):** Algorithmic logic and DOM manipulation.
+Theatre (T)
 
-## How to Run
+5 units
 
-Since this solution uses Vanilla JavaScript, no build process or package manager (npm/yarn) is required.
+$1500
 
-1.  Clone this repository:
-    ```bash
-    git clone <your-repository-url>
-    ```
-2.  Navigate to the project folder.
-3.  Open `index.html` in any modern web browser (Chrome, Firefox, Safari).
+Pub (P)
 
-## Algorithmic Approach
+4 units
 
-The solution utilizes an $O(n)$ time complexity approach:
+$1000
 
-1.  **Left Max Calculation:** We iterate through the array to find the maximum wall height to the *left* of every index.
-2.  **Right Max Calculation:** We iterate backwards to find the maximum wall height to the *right* of every index.
-3.  **Water Level Determination:** The water level at any specific index is determined by the shorter of the two surrounding walls: `min(LeftMax, RightMax)`.
-4.  **Volume Calculation:** The water volume at that index is `WaterLevel - BlockHeight`.
+Commercial Park (C)
 
-## Test Case Validation
+10 units
 
-Based on the assignment document:
+$3000
 
-* **Input:** `[0,4,0,0,0,6,0,6,4,0]`
-* **Expected Output:** `18 Units`
-* **Actual Result:** `18 Units` (Verified)
+Earnings are calculated based on the operational time remaining after construction.
+
+🚀 How to Run
+
+Prerequisites: Ensure Node.js is installed on your machine.
+
+Navigate to the folder:
+
+cd max_profit_algo
+
+
+Run the Script:
+
+node index.js
+
+
+🧪 Special Test Case (Time Unit: 49)
+
+For Time Unit: 49, the system correctly identifies that there are multiple distinct building combinations that yield the exact same top earnings.
+
+Expected Output:
+
+Time Unit: 49
+Earnings: $324000
+Solutions:
+T: 8 P: 2 C: 0
+T: 9 P: 0 C: 0
+
+
+Logic Explanation
+
+Solution 1 (8T, 2P, 0C): * Construction: 8 Theatres ($8 \times 5 = 40$ units) + 2 Pubs ($2 \times 4 = 8$ units).
+
+Total Time Used: 48 units.
+
+Solution 2 (9T, 0P, 0C): * Construction: 9 Theatres ($9 \times 5 = 45$ units).
+
+Total Time Used: 45 units.
+
+Result: Both configurations result in the exact same calculated profit of $324,000, demonstrating the algorithm's ability to find all optimal local maxima.
+
+🛠️ Implementation Details
+
+Iteration: The script iterates through all mathematically possible combinations of Commercial Parks, Theatres, and Pubs that fit within the time limit n.
+
+Efficiency Prioritization: When calculating earnings for a specific combination, buildings are constructed in order of their "Earnings Per Unit of Build Time" efficiency (Theatre/Park -> Pub) to maximize the time they are operational.
+
+Multi-Solution Tracking: Unlike standard algorithms that stop at the first maximum, this implementation maintains an array of solutions. If a new combination matches the current maximum profit, it is appended to the list.
